@@ -9,6 +9,7 @@ import {Routes} from '~/constants';
 import itemHasWeakPassword from "~/utils/itemHasWeakPassword";
 import itemHasReusedPassword from "~/utils/itemHasReusedPassword";
 import itemIsOld from "~/utils/itemIsOld";
+import itemIsWrong from "~/utils/itemIsWrong";
 import { useUserContext } from '../UserContext';
 
 const UsersManagement = () => {
@@ -40,8 +41,8 @@ const UsersManagement = () => {
         <Route exact path={Routes.Users}>
           <List items={items}/>
         </Route>
-        <Route path={Routes.Weak}>
-          <List items={items}/>
+        <Route path={Routes.Wrong}>
+          <List items={itemIsWrong(items)}/>
         </Route>
         <Route path={Routes.Reused}>
           <List items={items.filter((item) => itemHasReusedPassword(item, items))}/>
