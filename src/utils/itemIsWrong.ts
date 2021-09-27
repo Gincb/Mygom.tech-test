@@ -4,7 +4,6 @@ const itemIsWrong = (itemList: Array<IItem>) => {
   
   const wrongItems = itemList.filter(item => !item.email.includes('@'));
 
-  console.log(wrongItems)
   return wrongItems;
 };
 

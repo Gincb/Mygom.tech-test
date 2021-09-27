@@ -88,7 +88,7 @@ const List: FC<IList> = ({items}) => (
   <ul className="list">
     {
       items.map((item) => (
-        <ListItem item={item}/>
+        <ListItem key={item.email+Math.random()} item={item}/>
       ))
     }
   </ul>
