@@ -6,8 +6,7 @@ import LoadingScreen from '../LoadingScreen';
 import Header from './components/Header/Header';
 import {Route, Switch} from "react-router-dom";
 import {Routes} from '~/constants';
-import itemHasWeakPassword from "~/utils/itemHasWeakPassword";
-import itemHasReusedPassword from "~/utils/itemHasReusedPassword";
+import itemIsReused from "~/utils/itemIsReused";
 import itemIsOld from "~/utils/itemIsOld";
 import itemIsWrong from "~/utils/itemIsWrong";
 import { useUserContext } from '../UserContext';
@@ -45,7 +44,7 @@ const UsersManagement = () => {
           <List items={itemIsWrong(items)}/>
         </Route>
         <Route path={Routes.Reused}>
-          <List items={items.filter((item) => itemHasReusedPassword(item, items))}/>
+          <List items={items.filter((item) => itemIsReused(item, items))}/>
         </Route>
         <Route path={Routes.Old}>
           <List items={itemIsOld(items)}/>

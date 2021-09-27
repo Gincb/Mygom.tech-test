@@ -4,6 +4,7 @@ import { IItem } from "~/services/getUserItems";
 import FilterTab from "./components/FilterTab";
 import itemIsOld from '~/utils/itemIsOld';
 import itemIsWrong from '~/utils/itemIsWrong';
+import itemIsReused from '~/utils/itemIsReused';
 
 import './filter-style.scss';
 
@@ -12,16 +13,9 @@ interface IFilter {
 }
 
 const Filter: FC<IFilter> = ({items}) => {
-  const weakItemsCount = items.reduce((count, item) => (
-     (count + 1) 
-  ), 0)
-
-  const reusedItemsCount = items.reduce((count, item) => (
-    (count + 1)
-  ), 0)
-
   const wrongItemsCount = itemIsWrong(items).length;
   const oldItemsCount = itemIsOld(items).length;
+  const reusedItemsCount = items.filter((item) => itemIsReused(item, items)).length;
 
   return (
     <div className="filter">
