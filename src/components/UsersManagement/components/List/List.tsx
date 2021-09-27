@@ -10,6 +10,10 @@ interface IList {
   items: Array<IItem>
 }
 
+interface IListItem {
+  item: IItem
+}
+
 interface IUpdateModal {
   item: IItem
   setNewEmail: (arg0: string) => void
@@ -65,27 +69,29 @@ const UpdateModal: FC<IUpdateModal> = ({ item, newEmail, setNewEmail }) => {
   )
 }
 
-const List: FC<IList> = ({ items }) => {
+const ListItem: FC<IListItem> = ({ item }) => {
+  const [newEmail, setNewEmail] = useState<string>('')
+  
   return (
-    <ul className="list">
-      {items.map((item) => {
-        const [newEmail, setNewEmail] = useState<string>()
-
-        return (
-          <li className="item">
-            <ItemIcon name={item.name} />
-            <div>
-              <div className="title">{item.name}</div>
-              <div className="description">
-                {newEmail ? newEmail : item.email}
-              </div>
-            </div>
-            <UpdateModal item={item} newEmail={newEmail} setNewEmail={setNewEmail}/>
-          </li>
-        )
-      })}
-    </ul>
+    <li className="item">
+      <ItemIcon name={item.name} />
+      <div>
+        <div className="title">{item.name}</div>
+        <div className="description">{newEmail ? newEmail : item.email}</div>
+      </div>
+      <UpdateModal item={item} newEmail={newEmail} setNewEmail={setNewEmail} />
+    </li>
   )
 }
+
+const List: FC<IList> = ({items}) => (
+  <ul className="list">
+    {
+      items.map((item) => (
+        <ListItem item={item}/>
+      ))
+    }
+  </ul>
+)
 
 export default List
