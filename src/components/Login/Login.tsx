@@ -3,6 +3,7 @@ import {useHistory} from 'react-router-dom';
 import {Routes} from '~/constants';
 import login from '~/services/login';
 import ErrorBlock from '../ErrorBlock';
+import {usernameValidation, passwordVaildation} from '../../utils/loginValidation';
 
 import './login-style.scss';
 
@@ -14,41 +15,11 @@ const Login = () => {
   const [usernameError, setUsernameError] = useState<string>();
   const [passwordError, setPasswordError] = useState<string>();
 
-  const usernameValidation = () => {
-    if(username.length == 0) {
-      setUsernameError('Please enter your username');
-    } else if(username.length <= 4) {
-      setUsernameError('Your username should be longer than 4 letters');
-    } else if(checkSymbols(username)) {
-      setUsernameError('Your username shouldn`t contain other symbols than _ or -')
-    } else {
-      setUsernameError('')
-    }
-
-    return usernameError;
-  }
-
-  const checkSymbols = (username: string) => {
-    const symbols = /[ `!@#$%^&*()+\=\[\]{};':"\\|,.<>\/?~]/;
-    const checkForSymbols = symbols.test(username);
-    return checkForSymbols;
-  }
-
-  const passwordVaildation = () => {
-    if(password.length == 0) {
-      setPasswordError('Please enter your password');
-    } else if(password.length <= 4) {
-      setPasswordError('Your password should be longer than 4 letters');
-    } else {
-      setPasswordError('')
-    }
-  }
-
   const handleSubmit = async (event: SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
     setErrorMessage(null);
-    usernameValidation();
-    passwordVaildation();
+    usernameValidation(username, setUsernameError);
+    passwordVaildation(password, setPasswordError);
 
     try {
       await login(username, password);
