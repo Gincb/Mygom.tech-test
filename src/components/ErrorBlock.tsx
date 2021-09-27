@@ -10,7 +10,7 @@ const ErrorBlock: FC<IErrorBlock> = ({error}) => {
   }
 
   return (
-    <div>
+    <div className='error-block'>
       {error}
     </div>
   )
