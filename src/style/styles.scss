@@ -2,6 +2,10 @@
 @import './_spacings';
 @import './__mixins.scss';
 
+@import "../components/Login/login-style.scss";
+@import '../components/loading-screen.scss';
+
+
 html, body, #app {
   height: 100%;
   margin: 0;

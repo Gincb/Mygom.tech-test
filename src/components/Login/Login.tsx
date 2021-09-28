@@ -1,7 +1,7 @@
 import { SyntheticEvent, useState } from "react"
 import { useHistory } from "react-router-dom"
-import { Routes } from "~/constants"
-import login from "~/services/login"
+import { Routes } from "../../constants"
+import login from "../../services/login"
 import ErrorBlock from "../ErrorBlock"
 import {
   usernameValidation,
@@ -9,10 +9,8 @@ import {
 } from "../../utils/loginValidation"
 import LoadingScreen from "../LoadingScreen"
 
-import "./login-style.scss"
-
 const Login = () => {
-  const { push } = useHistory()
+  const history = useHistory()
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [errorMessage, setErrorMessage] = useState<string>()
@@ -29,7 +27,7 @@ const Login = () => {
 
     try {
       await login(username, password)
-      push(Routes.Users)
+      history.push(Routes.Users)
       setIsLoading(false)
     } catch (error) {
       setErrorMessage(
@@ -44,7 +42,7 @@ const Login = () => {
       {isLoading ? (
         <LoadingScreen />
       ) : (
-        <form className="login-form" onSubmit={handleSubmit}>
+        <form role='form' className="login-form" onSubmit={handleSubmit}>
           <h1 className="text-center">Mygom.tech</h1>
 
           <input
