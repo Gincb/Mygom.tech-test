@@ -38,7 +38,6 @@ describe("Login", () => {
     })
 
     it("show error if username is empty", async () => {
-      userEvent.type(screen.getByPlaceholderText(/username/i), "")
       userEvent.click(screen.getByRole("button"))
       await waitFor(() => {
         expect(
@@ -59,8 +58,7 @@ describe("Login", () => {
       })
     })
 
-    it("show error if username is empty", async () => {
-      userEvent.type(screen.getByPlaceholderText(/password/i), "")
+    it("show error if password is empty", async () => {
       userEvent.click(screen.getByRole("button"))
       await waitFor(() => {
         expect(
