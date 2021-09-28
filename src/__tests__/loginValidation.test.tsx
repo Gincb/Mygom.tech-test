@@ -4,7 +4,6 @@ import {
   screen,
   cleanup,
   waitFor,
-  waitForElementToBeRemoved,
 } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import Login from "../components/Login/Login"

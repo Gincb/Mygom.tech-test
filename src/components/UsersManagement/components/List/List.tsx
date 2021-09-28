@@ -1,10 +1,8 @@
 import { FC, useState } from "react"
-import { IItem } from "~/services/getUserItems"
+import { IItem } from "../../../../services/getUserItems"
 import ItemIcon from "./components/ItemIcon"
 import updateItem from "../../../../services/updateItem"
 import Modal from "react-modal"
-
-import "./list-style.scss"
 
 interface IList {
   items: Array<IItem>

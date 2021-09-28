@@ -1,5 +1,5 @@
-import { API } from "~/constants";
-import getUrl from "~/utils/getUrl";
+import { API } from "../constants";
+import getUrl from "../utils/getUrl";
 import { IItem } from "./getUserItems";
 
 const updateItem = (item: IItem) => (
